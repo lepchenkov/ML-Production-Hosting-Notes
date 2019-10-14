@@ -45,3 +45,17 @@ if __name__ == '__main__':
 # then ask all the questions
 # zappa deploy production
 # zappa makes a lot of APIs call to AWS services
+# zappa creates a S3 bucket
+
+
+# Virtual Machines
+# create an instance of ubuntu VM
+# VMs we are creating a fake hardware and installing an operating
+# system there
+# sudo su
+# apt install python-pip
+# pip install virtualenv
+# activate virtual env
+# grab repo and clone in
+# install requirements
+# gunicorn hello:app --log-file - --bind.0.0.0.0:80
