@@ -26,7 +26,10 @@ if __name__ == '__main__':
 # Heroku
 # brew install heroku/brew/heroku
 # "heroku login" command to login via browser
+# create Procfile
+# add requirements.txt
+# add runtime.txt
+# heroku create
+# git push heroku master
+# heroku open
 
-
-# 1st thing is to create a Procfile
-# web: gunicorn app:app --log-file -
