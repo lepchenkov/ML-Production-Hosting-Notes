@@ -33,3 +33,15 @@ if __name__ == '__main__':
 # git push heroku master
 # heroku open
 
+
+
+
+# Serverless
+# The idea is that the code will run only if it is needed
+# AWS lambda 
+# Zappa is a framework for deployment
+# pip install zappa
+# zappa init
+# then ask all the questions
+# zappa deploy production
+# zappa makes a lot of APIs call to AWS services
