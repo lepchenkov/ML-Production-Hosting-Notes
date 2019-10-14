@@ -1,5 +1,6 @@
 from flask import Flask
 
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -15,3 +16,17 @@ if __name__ == '__main__':
 # go to this repo
 # run ./ngrok http 5000   if you want to expose 5000 port where
 # your local server is running
+
+# while ngrok is running there is a http://localhost:4040 url with a nice 
+# admin dashboard where all the requessts that are coming are displayed 
+
+
+
+
+# Heroku
+# brew install heroku/brew/heroku
+# "heroku login" command to login via browser
+
+
+# 1st thing is to create a Procfile
+# web: gunicorn app:app --log-file -
