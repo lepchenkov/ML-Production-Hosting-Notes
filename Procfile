@@ -1,0 +1,1 @@
+web: gunirorn flask_app:app --log-file -
