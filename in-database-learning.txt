@@ -34,4 +34,28 @@ verions of models becomes way more simple.
 3. The third advantage is enterprise gradeness and scale of this approach. 
 We are using Microsoft ML package. This package offeres a number of 
 parallelized and scalable algorithms. Because of that the ML solution 
-become scalable. 
+become scalable. And the SQL server itself has decades of innovations. And
+all of this becomes available to ML algorithms. One thing is in-memory quering
+capability. If we combine this innovations with the scalalable versions of ML
+alrothims then we really get a tremendous performance advantage.    
+
+When installing the SQL server there is an option in "Feature Selection" 
+section to include "Machine Learning Services (In-Database)". There we can 
+choose both Python and R.
+
+### shows the demo ###
+Taking the Python code and running it inside the SQL server is as simple as that:
+
+    execute sp_execute_external_script
+    @language = N'Python',
+    @script = N'
+    import sys
+    import os 
+    print('*****')
+    print('!!!Hello World!!!')
+    print('*****')
+
+It a a special system stored procedure that understands the code for different
+languages like Python and R. And it offers some additional tidy integration with
+SQL. 
+
