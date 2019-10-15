@@ -11,7 +11,7 @@ And the model sits in the application. And there are issues with it.
 And the new paradigm it to move the intelligence and the models right where
 the data is. And this model becomes the asset of the enterprise. And any 
 number of applications can get access to this intelligence by connecting 
-to this databse (intelligence database).
+to this database (intelligence database).
 
 Why do we want in database ML?
 1. Eliminate data movement. So rather taking data to the compute we are 
@@ -32,7 +32,7 @@ data that we store inside a SQL server as well. So managing different
 verions of models becomes way more simple. 
 
 3. The third advantage is enterprise gradeness and scale of this approach. 
-We are using Microsoft ML package. This package offeres a number of 
+We are using microsoftml package. This package offeres a number of 
 parallelized and scalable algorithms. Because of that the ML solution 
 become scalable. And the SQL server itself has decades of innovations. And
 all of this becomes available to ML algorithms. One thing is in-memory quering
@@ -89,12 +89,50 @@ the same machine. And also this process is runned under separate user account
 which has very low priveledge so the Python script can not to the random things. 
 And when microsoft ML algorithms are used then it invokes another BxlServer.exe
 process which runs all the algorithms and native C++ code. And this process has
-highthrough put data communication channel with SQL server process. And that is
+high through put data communication channel with SQL server process. And that is
 how it achieves a lot of performance scale.
+
 
 revoscalepy - Python package to scale and performant alalytics.
 Scalabale and parallel predictive modeling algos: Linear regression, Logistic
 regresion, Decision trees, Boosted trees, Random Forest, Predictions. 
 Compute contexts: Local, SQL Server.
 Data sources, ETL, Utilities: ODBC Data Source, SQL Data Source, Xdf Data Source,
-Data Step, Data Import, Suumarization. 
+Data Step, Data Import, Summarization. 
+There is an initiator component that takes cate of distribution the job across 
+multiple different tasks. And then each task gets chunks of data from disc. 
+Because of that it can work with arbitarily large datasets. And the entire thing
+is written in C++ performant code so you get performance advantage. And revoscalepy
+can work both locally or on a server. And this whole thing is called PEMA - 
+Parallel External Memory Algorithms.
+
+And the other library is microsoftml which is the collection of algorithms that
+were used in microsoft internal products. And now microsoft makes microsoftml a 
+part of SQL server.  
+Learners: DNNs, Logistic Regression, One-class SVM, Fast Tree, Fast Forest, 
+Fast Linear (SDCA).
+It also has pre-trained models for sentiment analysis and image featurizers (
+ResNet-50, AlexNet, etc.). The library has also transforms for feature selection,
+transformation, etc. 
+
+______________________
+Demo of predicting length of stay in the hospital:
+The business problem is that unlike staying in a hotel, in the hospital patients
+don't really know for how long they are going to stay in it. So we need to 
+predict it so the human resources in the hospital can be manages prorerly. 
+
+As a data scientist you work in an IDE. And you have separate scripts: data_
+processing_step_1.py, feature_engineering_stage_2.py, 
+training_and_evaluation_stage_3.py and sql_connections.py.
+
+In training_and_evaluation_stage_3 there is a line 
+    RxComputeContext.rx_set_compute_context(sql)
+which sets the compute context to SQL for model training. 
+And in the beginning of the document the next lines are:
+    connection_sring = "Driver=SQL .... ...."
+    sql = RxInSqlServer.RxInSqlServer(connection_sring - connection_sring)
+    local = RxLocalSeq.RxLocalSeq()  
+
+So after the line RxComputeContext.rx_set_compute_context(sql) the subsequent
+lines of code are note executed locally, their execution is happening on a SQL
+server. 
