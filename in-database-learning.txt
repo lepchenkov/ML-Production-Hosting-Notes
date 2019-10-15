@@ -1,0 +1,14 @@
+Sumit Kumar 2017 Pydata Seattle talk
+
+Bringing intelligence to where the data lives. 
+
+The old approach is to separate the database and application/intelligence.
+The new approach is to separate application and intelligence/database.
+
+Old approach: we pull data from the database and bulid python-based model. 
+And the model sits in the application. And there are issues with it. 
+
+And the new paradigm it to move the intelligence and the models right where
+the data is. And this model becomes the asset of the enterprise. And any 
+number of applications can get access to this intelligence by connecting 
+to this databse. 
