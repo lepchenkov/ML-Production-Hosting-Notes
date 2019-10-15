@@ -48,3 +48,59 @@ Running a single container is fun but it is annoying to enter all this
 commands to get a container running and we may want to control several 
 containers that constitute an application. And this is going to be 
 accomplished with dockere compose. 
+
+________________________________________________________________________
+Docker Compsose
+Modern applications are mostly build using separate containers or 
+microservices. 
+Docker-compose.yml file instructs how to run a docker compose setup. 
+We start with a version number
+    version: '3'
+And then we define our services. Services specify what docker containers 
+we want to run. A simple wordpress website can be made using only two 
+services. 
+    services:
+        wordpress:
+            image: wordpress:latest
+            volumes:
+                -wp_data:/var/www/html
+            ports:
+                -"80:80"
+            environment:
+                WORDPRESS_DB_USER: wp_user
+                WORDPRESS_DB_PASSWORD: wp_db_password
+                WORDPRESS_DB_HOST: db:3306
+        db:
+            image: maria:latest
+            volumes:
+             - db_data:/var/lib/mysql
+            environment:
+                MYSQL_ROOT_PASSWORD: root_pass
+                MYSQL_DATABASE: wordpress
+                MYSQL_USER: wp_user
+                MYSQL_PASSWORD: wp_db_password
+volumes:
+    wp_data:
+    db_data:
+
+
+We also should create docker volume for persistent data. Volumes is a 
+filesystem you create outside a container that is then mounted on the inside
+of this container once they are spun up. 
+wp_data will hold all the wordpress information and db_data will hold 
+database information. After the volume name we specify where we going to 
+mount this filesystem in the contatiner, separted by colon.  
+
+We also want to expose a port from the container and map it to the port 
+on the host machine. We only need a single port exposed "80:80" for http.
+
+Environment variables allow to pass information into containers. For the 
+wordpress there are three variables at minimum. This is the information that
+wordpress needs to access the database. 
+We create a new service maria db which is a mysql replacement. And we want 
+to keep all our database information after the container is shut down, so
+we use db_volume. 
+
+The db host is lookig for the ip adress and port of the mysql server. But 
+docer compose allows to user service name in place of an iP so db is all we
+need for the ip adress.
