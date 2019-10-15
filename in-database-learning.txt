@@ -11,4 +11,27 @@ And the model sits in the application. And there are issues with it.
 And the new paradigm it to move the intelligence and the models right where
 the data is. And this model becomes the asset of the enterprise. And any 
 number of applications can get access to this intelligence by connecting 
-to this databse. 
+to this databse (intelligence database).
+
+Why do we want in database ML?
+1. Eliminate data movement. So rather taking data to the compute we are 
+moving compute to the data. Moving massive amounts of data is often not 
+very easy to do. And many times you are just not allowed to move the data 
+because of security reasons. 
+
+2. Once the model is developed, putting model into production causes
+challenges. Sometimes data sciecnce team gives model to app development 
+team and the app team translates those models into the language of the 
+application. And there is latency involved in it and fidelity loss. 
+But if we do operationalization using SQL server what we are doing is 
+embedding python code right there inside T-SQL stored procedure and the 
+application just makes a T-SQL stored procedure call and gets all of this 
+smarts. So from application standpoint you even might not be aware that 
+there is a python code running involved. And the model becomes just a binary
+data that we store inside a SQL server as well. So managing different 
+verions of models becomes way more simple. 
+
+3. The third advantage is enterprise gradeness and scale of this approach. 
+We are using Microsoft ML package. This package offeres a number of 
+parallelized and scalable algorithms. Because of that the ML solution 
+become scalable. 
