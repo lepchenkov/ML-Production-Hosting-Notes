@@ -32,4 +32,19 @@ Once comlete we can verify the existence of our images by running
 We can use a pre-made docker image from the docker hub using   
     docker pull ubuntu:16.04
 
-If you don't specify the tag we will fetch the latest version.
+If you don't specify the tag it will fetch the latest version.
+
+To run a container - pull it down from the docker hub or build the image 
+and then run followed by the image name.
+    docker run myDockerImage
+And there are many options available for running the containers such as 
+running it in the detached mode.
+    docker run -d -p 80:80 image service myapp
+
+We can view our running docker container with 
+    docker container ls
+
+Running a single container is fun but it is annoying to enter all this 
+commands to get a container running and we may want to control several 
+containers that constitute an application. And this is going to be 
+accomplished with dockere compose. 
