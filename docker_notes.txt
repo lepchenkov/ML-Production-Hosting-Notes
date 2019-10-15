@@ -1,0 +1,23 @@
+Docker is a development platform and a virtualization technology.
+Apps run the same way no matter where they are.
+
+Containers usually run one specific task each, such as a mySQL database, or a node.js application. They may be stored together and potentially scale. 
+
+Docker is a form of virtualization but the resources are shared directly with the host. 
+VM allocates the resources and builds a fake hardware and communicates with a host operating system via a Hypervisor. But Docker communicates natively with the system kernel bypassing the middle man on linux machines and windows 10. This means that we cun run any version of linux in the container and it will run natively. Docker uses less space too. It reuses files efficiently by using layered filesystem. 
+
+Dockerfile can be built into a docker image that can be run as a docker container. Dockerfile instructs how a docker image will be built, like a blueprint. 
+We first select a base image to start from using a FROM keyword. 
+    FROM ubuntu: 16.04
+from there we can run commands such as download, install and run your software. 
+    RUN echo "Thanks for watching!"
+
+Once the dockerfile is complete we can build it using docker build followed by the t-flag so we can name our image and pass the location of the docker file.
+    docker build -t myDockerImage.
+Once comlete we can verify the existence of our images by running 
+    docker images
+
+We can use a pre-made docker image from the docker hub using   
+    docker pull ubuntu:16.04
+
+If you don't specify the tag we will fetch the latest version.
