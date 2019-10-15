@@ -54,8 +54,47 @@ Taking the Python code and running it inside the SQL server is as simple as that
     print('*****')
     print('!!!Hello World!!!')
     print('*****')
+    '
 
 It a a special system stored procedure that understands the code for different
 languages like Python and R. And it offers some additional tidy integration with
 SQL. 
 
+Slightly more advanced example of T-SQL stored procedure with embedded Python 
+code (we are doing simple subsetting):
+
+    execute sp_execute_external_script
+    @language = N'Python',
+    @script = N'
+    OutputDataSet = pandas.DataFrame(InputDataSet[InputColumnName])
+    OutputRowCount = len(OutputDataSet)
+    ',
+    @input_data_1 = N'select * from #PythonTest',
+    @params = N'@InputColumnName varchar(max), @OutputRowCount INT OUTPUT',
+    @InputColumnName = @InputColumnName,
+    @OutputRowCount = @OutputRowCount OUTPUT
+
+    print @OutputRowCount
+
+We can pass any SQL query to this Python script. We can also pass a number of 
+parameters.  
+
+What the architecture looks like:
+So the python and R runtimes are integrated into database in the way that it is 
+not running inside a SQL process but in the database server machine. So what 
+happens is: when it sees the sp_execute_external_script, the SQL process 
+Launchpad.exe invokes the external runtime through appropriate launcher based on 
+a parameter language. And this python process is a separate process running on 
+the same machine. And also this process is runned under separate user account 
+which has very low priveledge so the Python script can not to the random things. 
+And when microsoft ML algorithms are used then it invokes another BxlServer.exe
+process which runs all the algorithms and native C++ code. And this process has
+highthrough put data communication channel with SQL server process. And that is
+how it achieves a lot of performance scale.
+
+revoscalepy - Python package to scale and performant alalytics.
+Scalabale and parallel predictive modeling algos: Linear regression, Logistic
+regresion, Decision trees, Boosted trees, Random Forest, Predictions. 
+Compute contexts: Local, SQL Server.
+Data sources, ETL, Utilities: ODBC Data Source, SQL Data Source, Xdf Data Source,
+Data Step, Data Import, Suumarization. 

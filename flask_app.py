@@ -16,7 +16,6 @@ if __name__ == '__main__':
 # go to this repo
 # run ./ngrok http 5000   if you want to expose 5000 port where
 # your local server is running
-
 # while ngrok is running there is a http://localhost:4040 url with a nice 
 # admin dashboard where all the requessts that are coming are displayed 
 
@@ -59,3 +58,20 @@ if __name__ == '__main__':
 # grab repo and clone in
 # install requirements
 # gunicorn hello:app --log-file - --bind.0.0.0.0:80
+
+
+
+# Docker
+# touch Dockerfile
+###########################
+# FROM python:3.5-onbuild
+
+# EXPOSE 5000
+
+# CMD gunicorn hello:app --log-file - --bind.0.0.0.0:5000
+#################
+# docker build - t atbaker/five-ways
+# docker rn -p 5000:5000 atbaer/five-ways
+# then push the docker container to the docker hub (that is 
+# basically a github for docker containers)
+
