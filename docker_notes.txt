@@ -47,7 +47,7 @@ We can view our running docker container with
 Running a single container is fun but it is annoying to enter all this 
 commands to get a container running and we may want to control several 
 containers that constitute an application. And this is going to be 
-accomplished with dockere compose. 
+accomplished with docker compose. 
 
 ________________________________________________________________________
 Docker Compsose
