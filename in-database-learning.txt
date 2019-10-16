@@ -165,5 +165,30 @@ WHERE
 
 
 And with BigQueryML we don't need to move the data. BigQuery itself is an 
-enterprise data warehouse that enables super fast SQL queries usint the 
+enterprise data warehouse that enables super fast SQL queries using the 
 processing power of Google infrustructure. 
+
+There is also a very nice visual dashboard where training statistics can be 
+found (Evaluation tab). 
+
+Evaluation of the model is like that:
+SELECT
+  *
+FROM 
+    ML.EVALUATE(MODEL 'google.analytics_model.sample_model', (
+SELECT
+    IF(totals.transactions IS NULL, 0, 1) AS transactions,
+    IFNULL(device.operatingSystem, "")
+    ......
+
+
+Prediction of the model is like that:
+SELECT
+  country,
+  SUM(predicted_label) as total_predicted_purchases
+FROM 
+    ML.PREDICT(MODEL 'google.analytics_model.sample_model', (
+SELECT
+    IF(totals.transactions IS NULL, 0, 1) AS transactions,
+    IFNULL(device.operatingSystem, "")
+    ...... 
