@@ -136,3 +136,8 @@ And in the beginning of the document the next lines are:
 So after the line RxComputeContext.rx_set_compute_context(sql) the subsequent
 lines of code are note executed locally, their execution is happening on a SQL
 server. 
+
+And each model can then be compared with each other. 
+
+All the models are safely stored inside the SQL server and the data and models
+are never leaving. 
