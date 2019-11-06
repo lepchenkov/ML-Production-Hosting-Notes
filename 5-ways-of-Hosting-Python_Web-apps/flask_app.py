@@ -1,3 +1,10 @@
+"""
+Talk by Andrew Baker on how to host python web applications.
+https://www.youtube.com/watch?v=vGphzPLemZE
+"""
+
+
+
 from flask import Flask
 
 

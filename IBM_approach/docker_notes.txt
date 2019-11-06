@@ -6,6 +6,7 @@ a node.js application. They may be stored together and potentially scale.
 
 Docker is a form of virtualization but the resources are shared directly
 with the host. 
+
 VM allocates the resources and builds a fake hardware and communicates with 
 a host operating system via a Hypervisor. But Docker communicates natively 
 with the system kernel bypassing the middle man on linux machines and 
